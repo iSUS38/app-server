@@ -11,10 +11,10 @@ const block4Max = 15;
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 var connection = mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
-    password: "",
-    database: "app"
+    host: "sql7.freemysqlhosting.net",
+    user: "sql7608016",
+    password: "WhjWXgpnPw",
+    database: "sql7608016"
 });
 
 connection.connect(function(err) {
