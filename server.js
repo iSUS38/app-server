@@ -60,6 +60,7 @@ app.get("/api/startExam", async function (req, res, next) {
             });
         });
 
+        console.log(demoQuestions);
         res.json({questions: demoQuestions, error: false});
         res.end();
         return next();
