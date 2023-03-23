@@ -159,7 +159,6 @@ app.get("/api/startExam", async function (req, res, next) {
 app.post("/api/adduseraccesskey", function (req, res, next) {
     var data = req.body;
 
-    console.log(data);
     var customerEmail = data.email;
     var productPrice = +data.variables.product_price;
 
