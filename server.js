@@ -25,6 +25,7 @@ connection.connect(function(err) {
 
 app.get("/api/startExam", async function (req, res, next) {
     var userKey = req.query.key.toLowerCase();
+    console.log(userKey)
 
     if (userKey === "demo") {
         var demoQuestions = await new Promise(function (resolve) {
@@ -69,7 +70,7 @@ app.get("/api/startExam", async function (req, res, next) {
     let data = await new Promise(function (resolv) {
         connection.query(`SELECT * FROM accesskeys WHERE accesskey = '${userKey}'`, async function (err, result, fields) {
 
-            if (!result.length) {
+            if (!result || !result.length) {
                 res.status(403);
                 res.json({error: true});
 
