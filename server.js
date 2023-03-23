@@ -156,6 +156,36 @@ app.get("/api/startExam", async function (req, res, next) {
     res.end();
 });
 
+app.post("/api/adduseraccesskey", function (req, res, next) {
+    var data = req.body;
+
+    var customerEmail = data.email;
+    var productPrice = +data.variables.product_price;
+
+    console.log(productPrice, customerEmail);
+    if (!productPrice || !customerEmail) return next();
+
+    var date = data.execution_date.date.split(" ")[0];
+    console.log(data);
+
+    switch(productPrice) {
+        case 20:
+            var endDate;
+
+            connection.query(`INSERT INTO accesskeys (accesskey, root, startdate, enddate) VALUES ('${customerEmail}', '0', ${date}, ${endDate})`);
+
+            break;
+        case 30:
+            connection.query(`INSERT INTO accesskeys (accesskey, root, startdate, enddate) VALUES ('${customerEmail}', '1', ${date}, 2038-01-10)`);
+
+            break;
+        default:
+            break;
+    }
+
+    res.end();
+});
+
 function getRandomIndex(alreadyAddedIndexes, arrayLen, iterationsChecker) {
     if (iterationsChecker >= 10) return 0;
 
