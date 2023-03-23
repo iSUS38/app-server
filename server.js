@@ -160,7 +160,6 @@ app.post("/api/adduseraccesskey", function (req, res, next) {
     var data = req.body;
 
     console.log(data);
-    console.log(typeof data);
     var customerEmail = data.email;
     var productPrice = +data.variables.product_price;
 
