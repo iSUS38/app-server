@@ -18,10 +18,10 @@ app.use(function(req, res, next) {
 });
 
 var connection = mysql.createConnection({
-    host: "sql7.freemysqlhosting.net",
-    user: "sql7608016",
-    password: "WhjWXgpnPw",
-    database: "sql7608016"
+    host: "db4free.net", //"sql7.freemysqlhosting.net",
+    user: "app12345",
+    password: "ffc4e31d",
+    database: "ap12345"
 });
 
 connection.connect(function(err) {
