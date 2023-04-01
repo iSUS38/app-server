@@ -163,7 +163,8 @@ app.post("/api/adduseraccesskey", function (req, res, next) {
     var data = req.body;
 
     var customerEmail = data.email;
-    var productPrice = +data.variables.product_price;
+    connection.query(`INSERT INTO accesskeys (accesskey, root, startdate, enddate) VALUES ('${customerEmail}', '1', '${date}', '${"2023-08-01"}')`);
+    /*var productPrice = +data.variables.product_price;
 
     if (!productPrice || !customerEmail) return next();
 
@@ -192,7 +193,7 @@ app.post("/api/adduseraccesskey", function (req, res, next) {
             break;
         default:
             break;
-    }
+    }*/
 
     res.json({"code": "313f6e3473c0664d4f7ae58db695fc9d"});
     res.end();
