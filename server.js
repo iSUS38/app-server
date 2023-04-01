@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 5000;
 
@@ -9,6 +10,8 @@ const block3Max = 8;
 const block4Max = 15;
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -157,27 +160,34 @@ app.get("/api/startExam", async function (req, res, next) {
 });
 
 app.post("/api/adduseraccesskey", function (req, res, next) {
-    var data = req.data;
+    var data = req.body;
 
-    console.log(req);
     var customerEmail = data.email;
     var productPrice = +data.variables.product_price;
 
-    console.log(productPrice, customerEmail);
     if (!productPrice || !customerEmail) return next();
 
     var date = data.execution_date.date.split(" ")[0];
-    console.log(data);
 
     switch(productPrice) {
         case 20:
-            var endDate;
+            let endDateObj = new Date(date);
 
-            connection.query(`INSERT INTO accesskeys (accesskey, root, startdate, enddate) VALUES ('${customerEmail}', '0', ${date}, ${endDate})`);
+            endDateObj.setMonth(endDateObj.getMonth() + 2);
+
+            let endDateStr = endDateObj.toISOString().split("T")[0];
+
+            connection.query(`INSERT INTO accesskeys (accesskey, root, startdate, enddate) VALUES ('${customerEmail}', '0', '${date}', '${endDateStr}')`);
 
             break;
         case 30:
-            connection.query(`INSERT INTO accesskeys (accesskey, root, startdate, enddate) VALUES ('${customerEmail}', '1', ${date}, 2038-01-10)`);
+            let endDate = new Date(date);
+
+            endDate.setFullYear(2038);
+
+            let endDateString = endDate.toISOString().split("T")[0];
+
+            connection.query(`INSERT INTO accesskeys (accesskey, root, startdate, enddate) VALUES ('${customerEmail}', '1', '${date}', '${endDateString}')`);
 
             break;
         default:
