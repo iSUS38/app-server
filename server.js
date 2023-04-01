@@ -160,7 +160,7 @@ app.get("/api/startExam", async function (req, res, next) {
 });
 
 app.post("/api/adduseraccesskey", function (req, res, next) {
-   /* var data = req.body;
+    var data = req.body;
 
     var customerEmail = data.email;
     var productPrice = +data.variables.product_price;
@@ -192,7 +192,7 @@ app.post("/api/adduseraccesskey", function (req, res, next) {
             break;
         default:
             break;
-    }*/
+    }
 
     res.json({"code": "313f6e3473c0664d4f7ae58db695fc9d"});
     res.end();
