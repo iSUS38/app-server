@@ -157,7 +157,7 @@ app.get("/api/startExam", async function (req, res, next) {
 });
 
 app.post("/api/adduseraccesskey", function (req, res, next) {
-    var data = req.body;
+    var data = req.data;
 
     console.log(req);
     var customerEmail = data.email;
