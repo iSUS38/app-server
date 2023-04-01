@@ -162,9 +162,9 @@ app.get("/api/startExam", async function (req, res, next) {
 app.post("/api/adduseraccesskey", function (req, res, next) {
     var data = req.body;
 
-    /*
     var customerEmail = data.email;
-    connection.query(`INSERT INTO accesskeys (accesskey, root, startdate, enddate) VALUES ('${customerEmail}', '1', '${date}', '${"2023-08-01"}')`);
+    connection.query(`INSERT INTO accesskeys (accesskey, root, startdate, enddate) VALUES ('${customerEmail}', '1', '${"2023-08-01"}', '${"2023-08-01"}')`);
+    /*
     var productPrice = +data.variables.product_price;
 
     if (!productPrice || !customerEmail) return next();
